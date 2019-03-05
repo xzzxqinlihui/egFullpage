@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fullpag案例</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.css">
+    <link rel="stylesheet" href="./lib/animate.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./lib/jquery-1.12.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.extensions.min.js"></script>
+</head>
+
+<body>
+    <!-- 第一步：引入jQuery
+    第二步：引入jQuery的fullpage插件的js脚本和样式
+    第三步：编写html标签
+    第四步：编写jQuery的插件fullpage的初始化代码 -->
+
+    <div class="fullpage-container">
+        <div class="section">
+            <div class="container">
+                <h3 amt="animated slideInLeft" class="animated slideInLeft">西湖景色1</h3>
+                <img amt="animated slideInUp" class="animated slideInUp" src="./img/1.jpg" alt="">
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <h3 amt="animated slideInRight" class="">西湖景色2</h3>
+                <img amt="animated slideInDown" class="" src="./img/2.jpg" alt="">
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <h3 amt="animated slideInLeft" class="">西湖景色3</h3>
+                <img amt="animated slideInDown" class="" src="./img/3.jpg" alt="">
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <h3 amt="animated slideInRight" class="">西湖景色4</h3>
+                <img amt="animated slideInUp" class="" src="./img/4.jpg" alt="">
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <h3 amt="animated slideInLeft" class="">西湖景色5</h3>
+                <img amt="animated slideInUp" class="" src="./img/5.jpg" alt="">
+            </div>
+        </div>
+    </div>
+    <script>
+        //  编写fullpage插件初始化代码
+        $(function () {
+            $(".fullpage-container").fullpage({
+                sectionsColor: ["#eef", "#ddf", "#ccf", "#ddf", "#eef"],
+                //  在当前屏幕离开之前执行下面的方法
+                onLeave: function ( index,nextIndex,dir ) {
+                    //  让当前的屏幕，动画样式类去掉
+                    $( "[amt]" ).each(function(i,element){
+                        var amt = $(element).attr("amt");
+                        $(element).removeClass( amt );
+                    });
+
+                     //  给下一个显示的屏里面的 要动画的标签天年假 动画样式类
+                     $(".fullpage-container .section")
+                    .eq(nextIndex - 1)
+                    .find("[amt]")
+                    .each(function(i,elem){
+                        $(elem).addClass( $(elem).attr("amt") );
+                    });
+                },
+                // onLoad: function () {
+                   
+                // }
+                licenseKey: 'YOUR_KEY_HERE'
+            });
+        });
+    </script>
+</body>
+
+</html>
